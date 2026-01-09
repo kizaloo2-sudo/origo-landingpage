@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Target, Users, Zap } from "lucide-react";
-import GlassCard from "@/components/ui/GlassCard";
+
 
 interface InsightCardsProps {
   score: number;
@@ -104,29 +104,8 @@ export default function InsightCards({ score }: InsightCardsProps) {
             ease: [0.16, 1, 0.3, 1],
           }}
         >
-          <GlassCard className="h-full">
-            {/* Icon */}
-            <div className="mb-4">
-              <div
-                className="w-12 h-12 rounded-xl flex items-center justify-center"
-                style={{ backgroundColor: `${insight.iconColor}20` }}
-              >
-                <insight.icon
-                  className="w-6 h-6"
-                  style={{ color: insight.iconColor }}
-                  strokeWidth={2}
-                />
-              </div>
-            </div>
-
-            {/* Content */}
-            <h3 className="text-xl font-bold text-white mb-3 leading-tight">
-              {insight.title}
-            </h3>
-            <p className="text-sm md:text-base text-origo-grey leading-relaxed">
-              {insight.description}
-            </p>
-          </GlassCard>
+          <div className="bg-white/5 backdrop-blur-xl border border-white/10 rounded-2xl p-6 hover:bg-white/10 hover:border-white/20 transition-all duration-300">
+          </div>
         </motion.div>
       ))}
     </div>
