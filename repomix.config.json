@@ -1,0 +1,25 @@
+{
+  "output": {
+    "filePath": "project-context.xml",
+    "style": "xml"
+  },
+  "include": [
+    "**/*.{ts,tsx,js,jsx}",
+    "**/*.{json,css,scss,md,mdx}",
+    "**/supabase/**"
+  ],
+  "ignore": {
+    "customPatterns": [
+      "**/node_modules/**",
+      "**/.next/**",
+      "**/.git/**",
+      "**/dist/**",
+      "**/build/**",
+      "**/*.{png,jpg,jpeg,gif,svg,ico,webp}",
+      "**/*.{pdf,doc,docx}",
+      "**/package-lock.json",
+      "**/yarn.lock",
+      "**/pnpm-lock.yaml"
+    ]
+  }
+}

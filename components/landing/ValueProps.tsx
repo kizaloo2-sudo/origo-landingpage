@@ -55,21 +55,21 @@ export default function ValueProps() {
   const valueProps = [
     {
       icon: Target,
-      title: "Signal over Noise",
+      title: "Market Direction",
       description:
-        "Stop guessing. We decode market chaos into clear, actionable buy/sell signals tailored to your risk profile.",
+        "Are you targeting markets with real buying signals? We help you identify where actual demand exists, not where you hope it does.",
     },
     {
       icon: Cpu,
-      title: "Systems over Hustle",
+      title: "Customer Priority",
       description:
-        "You don't need to work harder. You need a machine. We build automated workflows that run without you.",
+        "Are you focusing on buyers who can actually convert? Stop wasting time on prospects who will never close.",
     },
     {
       icon: TrendingUp,
-      title: "Exponential Growth",
+      title: "Execution Efficiency",
       description:
-        "Linear effort, exponential results. Turn your 8% execution into 92% of your revenue outcome.",
+        "Are you burning CAC on noise instead of signal? Learn where your resources should go — and where they shouldn't.",
     },
   ];
 
@@ -97,21 +97,20 @@ export default function ValueProps() {
         >
           <div className="px-4 py-2 bg-[#febe5d]/10 border border-[#febe5d]/30 rounded-full">
             <span className="text-sm font-semibold text-[#febe5d] uppercase tracking-wide">
-              Why Origo?
+              Why Take This Assessment?
             </span>
           </div>
         </motion.div>
 
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-          Most businesses lose because they
+          Most businesses don’t lose because
           <br />
-          <span className="text-[#febe5d]">execute in the wrong direction.</span>
+          <span className="text-[#febe5d]">they lack execution.</span>
         </h2>
 
         <p className="text-xl md:text-2xl text-[#a3a3a3] max-w-3xl mx-auto">
-          We fix the{" "}
-          <span className="text-[#febe5d] font-bold">8%</span>{" "}
-          that matters.
+          They lose because they{" "}
+          <span className="text-[#febe5d] font-bold">execute in the wrong direction — for too long.</span>
         </p>
       </motion.div>
 

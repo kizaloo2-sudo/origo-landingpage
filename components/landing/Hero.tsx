@@ -28,7 +28,7 @@ export default function Hero() {
         >
           <Sparkles className="w-4 h-4 text-[#febe5d]" />
           <span className="text-sm font-semibold text-[#febe5d] uppercase tracking-wide">
-            Market Signal Architecture
+            Market Signal Readiness Assessment
           </span>
         </motion.div>
 
@@ -39,12 +39,12 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.2, ease: [0.16, 1, 0.3, 1] }}
           className="text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-bold leading-[1.1] tracking-tight text-white px-4"
         >
-          Fewer guesses.
+          Are you executing —
           <br />
-          Better decisions.
+          or executing in the
           <br />
           <span className="bg-clip-text text-transparent bg-linear-to-r from-[#febe5d] via-[#ffc978] to-[#febe5d] animate-gradient">
-            Faster growth.
+            wrong direction?
           </span>
         </motion.h1>
 
@@ -55,9 +55,9 @@ export default function Hero() {
           transition={{ duration: 0.8, delay: 0.4, ease: [0.16, 1, 0.3, 1] }}
           className="text-xl md:text-2xl lg:text-3xl text-[#a3a3a3] max-w-4xl leading-relaxed px-4"
         >
-          The 92% of business effort is execution. We help you architect the{" "}
+          Take a 3-minute Market Signal Assessment to understand{" "}
           <span className="text-white font-bold">
-            8% that actually determines the outcome.
+            where demand really exists, which customers deserve focus, and where time and budget are being wasted.
           </span>
         </motion.p>
 
