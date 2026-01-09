@@ -97,17 +97,17 @@ export default function HowItWorks() {
         >
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-[#febe5d]" />
-            <span>⏱ Takes ~3 minutes</span>
+            <span>3 minutes</span>
           </div>
           <div className="hidden md:block w-px h-6 bg-white/20" />
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-[#febe5d]" />
-            <span>🎯 Free</span>
+            <span>Free</span>
           </div>
           <div className="hidden md:block w-px h-6 bg-white/20" />
           <div className="flex items-center gap-3">
             <div className="w-2 h-2 rounded-full bg-[#febe5d]" />
-            <span>📊 Instant results</span>
+            <span>Instant results</span>
           </div>
         </motion.div>
       </div>
