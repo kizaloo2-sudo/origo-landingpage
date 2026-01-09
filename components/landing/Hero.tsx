@@ -72,10 +72,10 @@ export default function Hero() {
             variant="default"
             size="lg"
             onClick={() => (window.location.href = "/assessment")}
-            className="text-lg md:text-xl px-12 py-6 font-bold bg-[#febe5d] hover:bg-[#ffc978] text-black shadow-[0_0_40px_rgba(254,190,93,0.5)] hover:shadow-[0_0_60px_rgba(254,190,93,0.7)] transition-all duration-300"
+            className="rounded-full text-lg md:text-xl px-10 py-7 font-bold bg-[#febe5d] hover:bg-[#ffc978] text-black shadow-[0_0_40px_rgba(254,190,93,0.5)] hover:shadow-[0_0_60px_rgba(254,190,93,0.7)] transition-all duration-300"
           >
             Start Market Signal Assessment
-            <ArrowRight className="ml-2 w-5 h-5" />
+            <ArrowRight className="ml-3 w-6 h-6" />
           </Button>
         </motion.div>
 
