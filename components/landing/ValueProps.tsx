@@ -103,7 +103,7 @@ export default function ValueProps() {
         </motion.div>
 
         <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white mb-6 tracking-tight">
-          Most businesses don’t lose because
+          Most businesses don't lose because
           <br />
           <span className="text-[#febe5d]">they lack execution.</span>
         </h2>
