@@ -89,13 +89,13 @@ export default function QuizContainer() {
   const progress = ((currentStep + 1) / ASSESSMENT_QUESTIONS.length) * 100;
 
   return (
-    <div className="min-h-screen bg-[#0a0a0a] py-8 px-4">
+    <div className="min-h-screen bg-[#0a0a0a] flex items-center justify-center py-8 sm:py-12 px-4">
       {/* Background Gradient */}
       <div className="absolute inset-0 bg-gradient-radial from-[#febe5d]/5 via-transparent to-transparent opacity-50 pointer-events-none" />
 
-      <div className="max-w-3xl mx-auto relative">
+      <div className="w-full max-w-3xl mx-auto relative">
         {/* Progress Bar */}
-        <div className="mb-8">
+        <div className="mb-6 sm:mb-8">
           <div className="flex items-center justify-between mb-2">
             <span className="text-sm text-neutral-400">
               Question {currentStep + 1} of {ASSESSMENT_QUESTIONS.length}
@@ -122,7 +122,7 @@ export default function QuizContainer() {
             animate={{ opacity: 1, x: 0 }}
             exit={{ opacity: 0, x: -20 }}
             transition={{ duration: 0.3 }}
-            className="bg-[#111111]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-8 mb-6"
+            className="bg-[#111111]/80 backdrop-blur-xl border border-white/10 rounded-2xl p-6 sm:p-8 mb-6"
           >
             {/* Category Badge */}
             {currentQuestion.category && (
@@ -134,7 +134,7 @@ export default function QuizContainer() {
             )}
 
             {/* Question Text */}
-            <h2 className="text-2xl md:text-3xl font-bold text-white mb-8 leading-tight">
+            <h2 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-6 sm:mb-8 leading-tight">
               {currentQuestion.text}
             </h2>
 
@@ -165,7 +165,7 @@ export default function QuizContainer() {
                         className={`w-full text-left p-4 rounded-lg border-2 transition-all duration-200 ${
                           isSelected
                             ? 'border-[#febe5d] bg-[#febe5d]/10'
-                            : 'border-white/10 bg-black/40 hover:border-white/30 hover:bg-white/5'
+                            : 'border-white/10 bg-black/40 hover:border-white/30 hover:bg-white/5 active:bg-white/10'
                         }`}
                       >
                         <span className={`text-base ${
@@ -226,7 +226,7 @@ export default function QuizContainer() {
               <AlertCircle className="w-5 h-5 text-red-400 flex-shrink-0 mt-0.5" />
               <div className="flex-1">
                 <h3 className="text-sm font-semibold text-red-300 mb-1">
-                  เกิดข้อผิดพลาด
+                  Error Occurred
                 </h3>
                 <p className="text-sm text-red-200/90">{submissionError}</p>
               </div>
@@ -240,24 +240,24 @@ export default function QuizContainer() {
           <button
             onClick={handlePrevious}
             disabled={currentStep === 0}
-            className="flex items-center gap-2 px-6 py-3 bg-transparent border border-white/20 text-white rounded-lg transition-all duration-200 hover:bg-white/5 disabled:opacity-30 disabled:cursor-not-allowed"
+            className="flex items-center gap-2 px-4 sm:px-6 py-3 bg-transparent border border-white/20 text-white rounded-lg transition-all duration-200 hover:bg-white/5 active:bg-white/10 disabled:opacity-30 disabled:cursor-not-allowed"
           >
             <ArrowLeft className="w-5 h-5" />
-            <span>Previous</span>
+            <span className="hidden sm:inline">Previous</span>
           </button>
 
           {/* Next/Submit Button */}
           <button
             onClick={handleNext}
             disabled={!canGoNext || isSubmitting || localSubmitting || hasSubmitted}
-            className="flex items-center gap-2 px-8 py-3 bg-[#febe5d] hover:bg-[#ffc978] text-black font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(254,190,93,0.3)]"
+            className="flex items-center gap-2 px-6 sm:px-8 py-3 bg-[#febe5d] hover:bg-[#ffc978] active:bg-[#ffc978] text-black font-semibold rounded-lg transition-all duration-200 disabled:opacity-50 disabled:cursor-not-allowed hover:shadow-[0_0_20px_rgba(254,190,93,0.3)] active:shadow-[0_0_20px_rgba(254,190,93,0.3)]"
           >
             <span>
               {isSubmitting 
-                ? 'กำลังส่ง...' 
+                ? 'Submitting...' 
                 : isLastQuestion 
-                  ? 'ส่งแบบประเมิน' 
-                  : 'ถัดไป'
+                  ? 'Submit Assessment' 
+                  : 'Next'
               }
             </span>
             {!isLastQuestion && !isSubmitting && <ArrowRight className="w-5 h-5" />}
