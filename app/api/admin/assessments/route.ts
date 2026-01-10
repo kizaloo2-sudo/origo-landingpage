@@ -60,6 +60,8 @@ export async function GET(request: Request) {
       profiles: {
         email: assessment.contact_email,
         full_name: assessment.contact_name,
+        role: assessment.contact_role || null,
+        industry: assessment.company_industry || null,
       },
     }));
 
