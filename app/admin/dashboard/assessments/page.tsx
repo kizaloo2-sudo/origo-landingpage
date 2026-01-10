@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
+import { Card, CardContent } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/Button';
@@ -14,7 +14,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Download, Eye, FileSpreadsheet, FileText, FileJson, Mail, MoreVertical, Briefcase, Building, Trash2, Send, Award, Search } from 'lucide-react';
+import { Search, Eye, MoreVertical, Briefcase, Building, Trash2, Send, Award, Mail } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -52,7 +52,6 @@ export default function AssessmentsPage() {
   const [assessments, setAssessments] = useState<Assessment[]>([]);
   const [loading, setLoading] = useState(true);
   const [searchQuery, setSearchQuery] = useState('');
-  const [exportOpen, setExportOpen] = useState(false);
   const [viewDetailsOpen, setViewDetailsOpen] = useState(false);
   const [sendEmailOpen, setSendEmailOpen] = useState(false);
   const [deleteAssessmentOpen, setDeleteAssessmentOpen] = useState(false);
@@ -82,58 +81,6 @@ export default function AssessmentsPage() {
       setAssessments([]);
     } finally {
       setLoading(false);
-    }
-  };
-
-  const handleExport = (format: 'csv' | 'json' | 'xlsx') => {
-    try {
-      let content = '';
-      let filename = '';
-      let mimeType = '';
-
-      if (format === 'csv') {
-        // CSV export
-        const headers = ['ID', 'User Email', 'User Name', 'Score', 'Status', 'Submitted Date'];
-        const rows = assessments.map(a => [
-          a.id,
-          a.profiles?.email || 'N/A',
-          a.profiles?.full_name || 'N/A',
-          a.score || 0,
-          a.completed ? 'Completed' : 'In Progress',
-          new Date(a.created_at).toLocaleString()
-        ]);
-        
-        content = [headers, ...rows].map(row => row.join(',')).join('\n');
-        filename = `assessments-${Date.now()}.csv`;
-        mimeType = 'text/csv';
-      } else if (format === 'json') {
-        // JSON export
-        content = JSON.stringify(assessments, null, 2);
-        filename = `assessments-${Date.now()}.json`;
-        mimeType = 'application/json';
-      } else if (format === 'xlsx') {
-        // For XLSX, we would typically use a library like xlsx
-        // For now, we'll just show a message
-        toast.info('XLSX export coming soon! Using CSV instead.');
-        handleExport('csv');
-        return;
-      }
-
-      // Create and download file
-      const blob = new Blob([content], { type: mimeType });
-      const url = window.URL.createObjectURL(blob);
-      const a = document.createElement('a');
-      a.href = url;
-      a.download = filename;
-      document.body.appendChild(a);
-      a.click();
-      document.body.removeChild(a);
-      window.URL.revokeObjectURL(url);
-
-      toast.success(`Exported ${assessments.length} assessments as ${format.toUpperCase()}`);
-      setExportOpen(false);
-    } catch (error) {
-      toast.error('Failed to export data');
     }
   };
 
@@ -206,65 +153,22 @@ export default function AssessmentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Page Header */}
-      <div className="flex items-center justify-end">
-        <Button
-          variant="default"
-          size="lg"
-          className="bg-[#febe5d] hover:bg-[#ffc978] text-black"
-          onClick={() => setExportOpen(true)}
-        >
-          <Download className="mr-2 w-4 h-4" />
-          Export Data
-        </Button>
-      </div>
-
-      {/* Stats Cards */}
-      <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-400">Total Assessments</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">{assessments.length}</div>
-            <p className="text-xs text-neutral-500 mt-1">All time</p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-400">Completed</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {assessments.filter((a) => a.completed).length}
+      {/* Search */}
+      <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
+        <CardContent className="pt-6">
+          <div className="flex items-center gap-4">
+            <div className="relative flex-1">
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+              <Input
+                placeholder="Search assessments by name or email..."
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                className="pl-10 bg-black/40 border-white/10 text-white"
+              />
             </div>
-            <p className="text-xs text-neutral-500 mt-1">
-              {assessments.length > 0 
-                ? Math.round((assessments.filter((a) => a.completed).length / assessments.length) * 100)
-                : 0}% completion rate
-            </p>
-          </CardContent>
-        </Card>
-
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
-          <CardHeader className="pb-3">
-            <CardTitle className="text-sm font-medium text-neutral-400">Average Score</CardTitle>
-          </CardHeader>
-          <CardContent>
-            <div className="text-2xl font-bold text-white">
-              {assessments.length > 0
-                ? Math.round(
-                    assessments.reduce((acc, a) => acc + (a.score || 0), 0) / assessments.length
-                  )
-                : 0}
-            </div>
-            <p className="text-xs text-neutral-500 mt-1">Out of 100</p>
-          </CardContent>
-        </Card>
-      </div>
-
-
+          </div>
+        </CardContent>
+      </Card>
 
       {/* Assessments Table */}
       <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
@@ -376,76 +280,6 @@ export default function AssessmentsPage() {
         </CardContent>
       </Card>
 
-      {/* Export Dialog */}
-      <Dialog open={exportOpen} onOpenChange={setExportOpen}>
-        <DialogContent className="max-w-md">
-          <DialogHeader>
-            <DialogTitle>Export Assessment Data</DialogTitle>
-            <DialogDescription>
-              Choose the format for exporting {assessments.length} assessment records
-            </DialogDescription>
-          </DialogHeader>
-          <div className="space-y-3 py-4">
-            <Button
-              variant="outline"
-              className="w-full justify-start text-left h-auto py-4 border-white/10 bg-transparent hover:bg-white/5"
-              onClick={() => handleExport('csv')}
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-green-500/10 rounded-lg">
-                  <FileSpreadsheet className="w-5 h-5 text-green-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">CSV Format</p>
-                  <p className="text-xs text-neutral-400">Compatible with Excel and Google Sheets</p>
-                </div>
-              </div>
-            </Button>
-
-            <Button
-              variant="outline"
-              className="w-full justify-start text-left h-auto py-4 border-white/10 bg-transparent hover:bg-white/5"
-              onClick={() => handleExport('json')}
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-blue-500/10 rounded-lg">
-                  <FileJson className="w-5 h-5 text-blue-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">JSON Format</p>
-                  <p className="text-xs text-neutral-400">For developers and data analysis</p>
-                </div>
-              </div>
-            </Button>
-
-            <Button
-              variant="outline"
-              className="w-full justify-start text-left h-auto py-4 border-white/10 bg-transparent hover:bg-white/5"
-              onClick={() => handleExport('xlsx')}
-            >
-              <div className="flex items-center gap-3">
-                <div className="p-2 bg-orange-500/10 rounded-lg">
-                  <FileText className="w-5 h-5 text-orange-400" />
-                </div>
-                <div>
-                  <p className="text-white font-medium">Excel Format (.xlsx)</p>
-                  <p className="text-xs text-neutral-400">Native Excel format with formatting</p>
-                </div>
-              </div>
-            </Button>
-          </div>
-          <DialogFooter>
-            <Button 
-              variant="outline" 
-              onClick={() => setExportOpen(false)}
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 transition-all"
-            >
-              Cancel
-            </Button>
-          </DialogFooter>
-        </DialogContent>
-      </Dialog>
-
       {/* View Details Dialog */}
       <Dialog open={viewDetailsOpen} onOpenChange={setViewDetailsOpen}>
         <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
@@ -470,6 +304,14 @@ export default function AssessmentsPage() {
                   <Label className="text-neutral-400">Email</Label>
                   <p className="text-white font-medium">{selectedAssessment?.profiles?.email || 'N/A'}</p>
                 </div>
+                <div className="space-y-1">
+                  <Label className="text-neutral-400">Role</Label>
+                  <p className="text-white font-medium">{selectedAssessment?.profiles?.role || 'N/A'}</p>
+                </div>
+                <div className="space-y-1">
+                  <Label className="text-neutral-400">Industry</Label>
+                  <p className="text-white font-medium">{selectedAssessment?.profiles?.industry || 'N/A'}</p>
+                </div>
               </div>
             </div>
 
@@ -477,6 +319,10 @@ export default function AssessmentsPage() {
             <div>
               <h3 className="text-lg font-semibold text-white mb-3">Assessment Information</h3>
               <div className="grid grid-cols-2 gap-4">
+                <div className="space-y-1">
+                  <Label className="text-neutral-400">Score</Label>
+                  <p className="text-white font-medium text-2xl">{selectedAssessment?.score || 0}</p>
+                </div>
                 <div className="space-y-1">
                   <Label className="text-neutral-400">Tier</Label>
                   <div className="pt-1">
@@ -494,9 +340,9 @@ export default function AssessmentsPage() {
                   </p>
                 </div>
                 <div className="space-y-1">
-                  <Label className="text-neutral-400">Assessment ID</Label>
-                  <p className="text-white font-mono text-xs">
-                    {selectedAssessment?.id || 'N/A'}
+                  <Label className="text-neutral-400">Status</Label>
+                  <p className="text-white font-medium">
+                    {selectedAssessment?.completed ? 'Completed' : 'In Progress'}
                   </p>
                 </div>
               </div>
@@ -550,7 +396,7 @@ export default function AssessmentsPage() {
               onClick={() => setViewDetailsOpen(false)}
               className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 transition-all"
             >
-              Cancel
+              Close
             </Button>
           </DialogFooter>
         </DialogContent>

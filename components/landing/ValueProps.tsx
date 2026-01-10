@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import SectionContainer from "@/components/ui/SectionContainer";
 import { Target, Cpu, TrendingUp, LucideIcon } from "lucide-react";
+import { useState } from "react";
 
 interface ValuePropCardProps {
   icon: LucideIcon;
@@ -12,6 +13,8 @@ interface ValuePropCardProps {
 }
 
 function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardProps) {
+  const [isActive, setIsActive] = useState(false);
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -23,21 +26,38 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
         ease: [0.16, 1, 0.3, 1],
       }}
       className="group relative h-full"
+      onClick={() => setIsActive(!isActive)}
+      onMouseEnter={() => setIsActive(true)}
+      onMouseLeave={() => setIsActive(false)}
     >
       {/* Hover Glow Background */}
-      <div className="absolute inset-0 bg-[#febe5d]/0 group-hover:bg-[#febe5d]/5 group-active:bg-[#febe5d]/5 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10" />
+      <div className={`absolute inset-0 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10 ${
+        isActive ? 'bg-[#febe5d]/5' : 'bg-[#febe5d]/0'
+      }`} />
 
       {/* Card Container */}
-      <div className="h-full bg-[#111111]/80 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 group-hover:border-[#febe5d] group-active:border-[#febe5d] group-hover:shadow-[0_0_30px_rgba(254,190,93,0.2)] group-active:shadow-[0_0_30px_rgba(254,190,93,0.2)] group-hover:-translate-y-1 sm:group-hover:-translate-y-2 group-active:-translate-y-1 cursor-pointer">
+      <div className={`h-full bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 cursor-pointer ${
+        isActive 
+          ? 'border-[#febe5d] shadow-[0_0_30px_rgba(254,190,93,0.2)] -translate-y-1 sm:-translate-y-2' 
+          : 'border-white/10'
+      }`}>
         {/* Icon Container */}
         <div className="mb-4 sm:mb-6">
-          <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center group-hover:bg-[#febe5d]/20 group-active:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 group-active:border-[#febe5d]/40 transition-all duration-300 group-hover:scale-110 group-active:scale-105">
-            <Icon className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 group-hover:rotate-12 group-active:rotate-6" strokeWidth={2} />
+          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 ${
+            isActive 
+              ? 'bg-[#febe5d]/20 border-[#febe5d]/40 scale-110' 
+              : ''
+          }`}>
+            <Icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 ${
+              isActive ? 'rotate-12' : ''
+            }`} strokeWidth={2} />
           </div>
         </div>
 
         {/* Content */}
-        <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 tracking-tight group-hover:text-[#febe5d] group-active:text-[#febe5d] transition-colors duration-300">
+        <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 tracking-tight transition-colors duration-300 ${
+          isActive ? 'text-[#febe5d]' : 'text-white'
+        }`}>
           {title}
         </h3>
         <p className="text-sm sm:text-base md:text-lg text-[#a3a3a3] leading-relaxed">
@@ -45,7 +65,9 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
         </p>
 
         {/* Bottom Border Accent */}
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent opacity-0 group-hover:opacity-100 group-active:opacity-100 transition-opacity duration-500" />
+        <div className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent transition-opacity duration-500 ${
+          isActive ? 'opacity-100' : 'opacity-0'
+        }`} />
       </div>
     </motion.div>
   );
