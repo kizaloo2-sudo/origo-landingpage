@@ -58,7 +58,9 @@ const TableRow = React.forwardRef<
   <tr
     ref={ref}
     className={cn(
-      "border-b transition-colors hover:bg-muted/50 data-[state=selected]:bg-muted",
+      "border-b data-[state=selected]:bg-muted",
+      // Only enable hover on desktop with mouse
+      "@media(hover:hover){hover:bg-muted/50}",
       className
     )}
     {...props}
