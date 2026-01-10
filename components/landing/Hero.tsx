@@ -7,7 +7,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <SectionContainer className="min-h-screen flex items-center justify-center py-12 px-4 sm:py-16 md:py-20 relative overflow-hidden">
+    <SectionContainer className="min-h-[calc(100vh-80px)] sm:min-h-screen flex items-center justify-center py-16 px-4 sm:py-20 md:py-16 relative overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Center Glow */}
