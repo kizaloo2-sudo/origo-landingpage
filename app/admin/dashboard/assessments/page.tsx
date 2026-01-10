@@ -86,7 +86,6 @@ export default function AssessmentsPage() {
 
   const handleSendEmail = async () => {
     try {
-      // Simulate sending email
       await new Promise(resolve => setTimeout(resolve, 1000));
       
       toast.success(`Email sent to ${selectedAssessment?.profiles?.email}`);
@@ -99,7 +98,6 @@ export default function AssessmentsPage() {
 
   const handleDeleteAssessment = async () => {
     try {
-      // TODO: Call API to delete assessment
       toast.success('Assessment deleted successfully');
       setDeleteAssessmentOpen(false);
       fetchAssessments();
@@ -110,7 +108,6 @@ export default function AssessmentsPage() {
 
   const handleExportCSV = () => {
     try {
-      // Create CSV content
       const headers = ['Name', 'Email', 'Role', 'Industry', 'Score', 'Tier', 'Date'];
       const rows = filteredAssessments.map(assessment => [
         assessment.profiles?.full_name || 'Unknown User',
@@ -127,7 +124,6 @@ export default function AssessmentsPage() {
         ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
       ].join('\n');
 
-      // Create blob and download
       const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
       const link = document.createElement('a');
       const url = URL.createObjectURL(blob);
@@ -176,7 +172,6 @@ export default function AssessmentsPage() {
     }
   };
 
-  // Calculate tier statistics
   const totalAssessments = assessments.length;
   const signalDriven = assessments.filter(a => getTierFromScore(a.score || 0) === 'Signal-Driven').length;
   const partialSignal = assessments.filter(a => getTierFromScore(a.score || 0) === 'Partial Signal').length;
@@ -201,7 +196,7 @@ export default function AssessmentsPage() {
     <div className="space-y-6">
       {/* Tier Distribution Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Signal-Driven
@@ -220,7 +215,7 @@ export default function AssessmentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Partial Signal
@@ -239,7 +234,7 @@ export default function AssessmentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Noise-Driven
@@ -264,7 +259,7 @@ export default function AssessmentsPage() {
         <CardContent className="pt-6">
           <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <div className="relative flex-1">
-              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
+              <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500 pointer-events-none" />
               <Input
                 placeholder="Search assessments by name or email..."
                 value={searchQuery}
@@ -274,7 +269,7 @@ export default function AssessmentsPage() {
             </div>
             <Button
               onClick={handleExportCSV}
-              className="bg-[#febe5d] hover:bg-[#ffc978] text-black font-bold active:scale-95 transition-transform touch-none"
+              className="bg-[#febe5d] text-black font-bold"
             >
               <Download className="mr-2 w-4 h-4" />
               Export to CSV
@@ -308,7 +303,7 @@ export default function AssessmentsPage() {
                 filteredAssessments.map((assessment) => (
                   <TableRow
                     key={assessment.id}
-                    className="border-white/10 transition-colors"
+                    className="border-white/10"
                   >
                     <TableCell>
                       <p className="text-sm font-medium text-white">
@@ -344,7 +339,7 @@ export default function AssessmentsPage() {
                     <TableCell>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 active:scale-95 transition-transform touch-none">
+                          <Button variant="ghost" size="icon" className="h-8 w-8">
                             <MoreVertical className="w-4 h-4 text-neutral-400" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -352,7 +347,7 @@ export default function AssessmentsPage() {
                           <DropdownMenuLabel className="text-white">Actions</DropdownMenuLabel>
                           <DropdownMenuSeparator className="bg-white/10" />
                           <DropdownMenuItem 
-                            className="text-neutral-300 focus:text-white focus:bg-white/5 active:bg-white/10"
+                            className="text-neutral-300 cursor-pointer"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setViewDetailsOpen(true);
@@ -362,7 +357,7 @@ export default function AssessmentsPage() {
                             View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem 
-                            className="text-neutral-300 focus:text-white focus:bg-white/5 active:bg-white/10"
+                            className="text-neutral-300 cursor-pointer"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setSendEmailOpen(true);
@@ -373,7 +368,7 @@ export default function AssessmentsPage() {
                           </DropdownMenuItem>
                           <DropdownMenuSeparator className="bg-white/10" />
                           <DropdownMenuItem 
-                            className="text-red-400 focus:text-red-300 focus:bg-red-500/10 active:bg-red-500/20"
+                            className="text-red-400 cursor-pointer"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setDeleteAssessmentOpen(true);
@@ -403,7 +398,6 @@ export default function AssessmentsPage() {
             </DialogDescription>
           </DialogHeader>
           <div className="space-y-6 py-4">
-            {/* User Information */}
             <div>
               <h3 className="text-lg font-semibold text-white mb-3">User Information</h3>
               <div className="grid grid-cols-2 gap-4">
@@ -428,7 +422,6 @@ export default function AssessmentsPage() {
               </div>
             </div>
 
-            {/* Assessment Information */}
             <div>
               <h3 className="text-lg font-semibold text-white mb-3">Assessment Information</h3>
               <div className="grid grid-cols-2 gap-4">
@@ -461,7 +454,6 @@ export default function AssessmentsPage() {
               </div>
             </div>
 
-            {/* Answers */}
             {selectedAssessment?.answers && (
               <div>
                 <h3 className="text-lg font-semibold text-white mb-3">Answers Summary</h3>
@@ -507,7 +499,7 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline"
               onClick={() => setViewDetailsOpen(false)}
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
+              className="border-white/10 text-neutral-300 bg-white/5"
             >
               Close
             </Button>
@@ -551,13 +543,13 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline" 
               onClick={() => setSendEmailOpen(false)} 
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
+              className="border-white/10 text-neutral-300 bg-white/5"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleSendEmail}
-              className="bg-[#febe5d] hover:bg-[#ffc978] text-black active:scale-95 transition-all touch-none"
+              className="bg-[#febe5d] text-black"
               disabled={!emailForm.subject || !emailForm.message}
             >
               <Send className="mr-2 w-4 h-4" />
@@ -586,13 +578,13 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline" 
               onClick={() => setDeleteAssessmentOpen(false)} 
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
+              className="border-white/10 text-neutral-300 bg-white/5"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleDeleteAssessment}
-              className="bg-red-500 hover:bg-red-600 text-white active:scale-95 transition-all touch-none"
+              className="bg-red-500 text-white"
             >
               <Trash2 className="mr-2 w-4 h-4" />
               Delete Assessment

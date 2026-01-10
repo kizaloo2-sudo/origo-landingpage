@@ -32,6 +32,51 @@
   -ms-overflow-style: none;
 }
 
+/* Mobile Touch Optimizations */
+/* Remove hover effects on touch devices */
+@media (hover: none) {
+  .hover-only\:hover\:bg-white\/5:hover {
+    background-color: transparent !important;
+  }
+  .hover-only\:hover\:bg-white\/10:hover {
+    background-color: transparent !important;
+  }
+  .hover-only\:hover\:border-white\/20:hover {
+    border-color: rgba(255, 255, 255, 0.1) !important;
+  }
+  .hover-only\:hover\:text-white:hover {
+    color: inherit !important;
+  }
+  /* Disable hover effects on buttons and interactive elements */
+  button:hover,
+  a:hover,
+  [role="button"]:hover {
+    background-color: inherit;
+  }
+}
+
+/* Enable active states for all devices */
+.touch-active\:active\:scale-95:active {
+  transform: scale(0.95);
+}
+
+.touch-active\:active\:bg-white\/10:active {
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+/* Prevent iOS tap highlight */
+* {
+  -webkit-tap-highlight-color: transparent;
+  -webkit-touch-callout: none;
+}
+
+/* Ensure buttons are tappable immediately */
+button, a, [role="button"] {
+  touch-action: manipulation;
+  user-select: none;
+  -webkit-user-select: none;
+}
+
 @theme inline {
   --radius-sm: calc(var(--radius) - 4px);
   --radius-md: calc(var(--radius) - 2px);
