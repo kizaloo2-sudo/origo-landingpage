@@ -59,7 +59,7 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
       }`} />
 
       {/* Card Container */}
-      <div className={`h-full bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 ${
+      <div className={`h-full min-h-[320px] sm:min-h-[340px] bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-8 sm:p-10 md:p-12 transition-all duration-300 overflow-hidden ${
         !isHoverDevice ? 'cursor-pointer' : ''
       } ${
         isActive 
@@ -67,25 +67,25 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
           : 'border-white/10'
       }`}>
         {/* Icon Container */}
-        <div className="mb-4 sm:mb-6">
-          <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 ${
+        <div className="mb-5 sm:mb-6">
+          <div className={`w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 ${
             isActive 
               ? 'bg-[#febe5d]/20 border-[#febe5d]/40 scale-110' 
               : ''
           }`}>
-            <Icon className={`w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 ${
+            <Icon className={`w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#febe5d] transition-transform duration-300 ${
               isActive ? 'rotate-12' : ''
             }`} strokeWidth={2} />
           </div>
         </div>
 
         {/* Content */}
-        <h3 className={`text-xl sm:text-2xl md:text-3xl font-bold mb-3 sm:mb-4 tracking-tight transition-colors duration-300 ${
+        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-5 tracking-tight leading-tight transition-colors duration-300 ${
           isActive ? 'text-[#febe5d]' : 'text-white'
         }`}>
           {title}
         </h3>
-        <p className="text-sm sm:text-base md:text-lg text-[#a3a3a3] leading-relaxed">
+        <p className="text-base sm:text-lg md:text-xl text-[#a3a3a3] leading-relaxed">
           {description}
         </p>
 
@@ -121,7 +121,7 @@ export default function ValueProps() {
   ];
 
   return (
-    <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 relative px-4 sm:px-6">
+    <SectionContainer className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 relative px-6 sm:px-8">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
         <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-[#febe5d]/3 rounded-full blur-3xl will-change-transform" />
@@ -133,37 +133,35 @@ export default function ValueProps() {
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}
         transition={{ duration: 0.6 }}
-        className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24 relative z-10"
+        className="text-center mb-12 sm:mb-14 md:mb-16 lg:mb-20 xl:mb-24 relative z-10"
       >
         <motion.div
           initial={{ opacity: 0, scale: 0.9 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.2 }}
-          className="inline-block mb-4 sm:mb-6"
+          className="inline-block mb-6 sm:mb-7"
         >
-          <div className="px-3 sm:px-4 py-1.5 sm:py-2 bg-[#febe5d]/10 border border-[#febe5d]/30 rounded-full">
-            <span className="text-xs sm:text-sm font-semibold text-[#febe5d] uppercase tracking-wide">
+          <div className="px-4 sm:px-5 py-2 sm:py-2.5 bg-[#febe5d]/10 border border-[#febe5d]/30 rounded-full">
+            <span className="text-sm sm:text-base font-semibold text-[#febe5d] uppercase tracking-wide">
               Why Take This Assessment?
             </span>
           </div>
         </motion.div>
 
-        <h2 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl xl:text-6xl font-bold text-white mb-4 sm:mb-6 tracking-tight px-2">
-          Most businesses don't lose because
-          <br className="hidden sm:block" />
-          <span className="sm:inline block mt-1 sm:mt-0"> </span>
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl xl:text-7xl font-bold text-white mb-5 sm:mb-6 leading-snug sm:leading-tight tracking-tight px-4 sm:px-6">
+          Most businesses don't lose because{" "}
           <span className="text-[#febe5d]">they lack execution.</span>
         </h2>
 
-        <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-[#a3a3a3] max-w-3xl mx-auto px-2">
+        <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl text-[#a3a3a3] max-w-3xl mx-auto px-4 sm:px-6 leading-relaxed font-medium">
           They lose because they{" "}
           <span className="text-[#febe5d] font-bold">execute in the wrong direction — for too long.</span>
         </p>
       </motion.div>
 
       {/* 3-Column Grid */}
-      <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 relative z-10">
+      <div className="grid grid-cols-1 md:grid-cols-3 gap-8 sm:gap-10 md:gap-12 relative z-10">
         {valueProps.map((prop, index) => (
           <ValuePropCard
             key={index}
