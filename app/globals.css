@@ -20,6 +20,8 @@ html {
 body {
   overflow-x: hidden; /* Prevent horizontal scroll on body too */
   position: relative;
+  background-color: #0a0a0a !important; /* Force dark background */
+  color: #ffffff !important; /* Force white text */
 }
 
 /* Custom Scrollbar (Hidden but functional) */
@@ -50,53 +52,9 @@ body {
   -ms-overflow-style: none;
 }
 
-/* CRITICAL: Completely disable hover on touch devices */
-@media (hover: none) {
-  /* Prevent all hover effects during touch/scroll */
-  * {
-    pointer-events: auto !important;
-  }
-  
-  /* Remove all hover pseudo-classes on touch devices */
-  *:hover {
-    background-color: inherit !important;
-    background: inherit !important;
-    color: inherit !important;
-    border-color: inherit !important;
-    opacity: inherit !important;
-    box-shadow: inherit !important;
-    transform: none !important;
-    scale: inherit !important;
-  }
-  
-  /* Specifically target common hover elements */
-  button:hover,
-  a:hover,
-  [role="button"]:hover,
-  [role="menuitem"]:hover,
-  [data-radix-collection-item]:hover,
-  div:hover,
-  span:hover,
-  tr:hover,
-  td:hover,
-  nav:hover,
-  section:hover,
-  article:hover {
-    background-color: inherit !important;
-    background: inherit !important;
-    transform: none !important;
-    transition: none !important;
-  }
-  
-  /* Disable all transitions during scroll */
-  * {
-    transition-property: none !important;
-  }
-}
-
-/* Touch device optimizations */
+/* Touch device optimizations - SIMPLIFIED */
 @media (pointer: coarse) {
-  /* Prevent any visual feedback from touch/scroll */
+  /* Disable tap highlight */
   * {
     -webkit-tap-highlight-color: transparent !important;
     -webkit-touch-callout: none !important;
@@ -109,44 +67,15 @@ body {
     overscroll-behavior-y: none; /* Prevent pull-to-refresh bounce */
   }
   
-  /* Only show active state when actually pressing - not during scroll */
-  button:active:not(:disabled), 
-  a:active:not([disabled]), 
-  [role="button"]:active:not([disabled]) {
-    transform: scale(0.97);
-    transition: transform 0.1s ease;
-  }
-  
   /* Immediate touch response - no delay */
   button, a, [role="button"], [role="menuitem"], [data-radix-collection-item] {
     touch-action: manipulation !important;
-    user-select: none !important;
-    -webkit-user-select: none !important;
   }
   
   /* Remove focus outline on touch */
   *:focus:not(:focus-visible) {
     outline: none !important;
     box-shadow: none !important;
-  }
-  
-  /* Prevent unwanted highlights during scroll */
-  *::selection {
-    background: transparent;
-  }
-  
-  *::-moz-selection {
-    background: transparent;
-  }
-}
-
-/* Desktop only - enable hover effects */
-@media (hover: hover) and (pointer: fine) {
-  /* Hover effects only work on desktop with mouse */
-  button:hover,
-  a:hover,
-  [role="button"]:hover {
-    /* Let Tailwind classes handle hover on desktop */
   }
 }
 
@@ -193,71 +122,71 @@ body {
 
 :root {
   --radius: 0.625rem;
-  --background: oklch(1 0 0);
-  --foreground: oklch(0.145 0 0);
-  --card: oklch(1 0 0);
-  --card-foreground: oklch(0.145 0 0);
-  --popover: oklch(1 0 0);
-  --popover-foreground: oklch(0.145 0 0);
-  --primary: oklch(0.205 0 0);
-  --primary-foreground: oklch(0.985 0 0);
-  --secondary: oklch(0.97 0 0);
-  --secondary-foreground: oklch(0.205 0 0);
-  --muted: oklch(0.97 0 0);
-  --muted-foreground: oklch(0.556 0 0);
-  --accent: oklch(0.97 0 0);
-  --accent-foreground: oklch(0.205 0 0);
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+  --primary: #febe5d;
+  --primary-foreground: #000000;
+  --secondary: #262626;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.577 0.245 27.325);
-  --border: oklch(0.922 0 0);
-  --input: oklch(0.922 0 0);
-  --ring: oklch(0.708 0 0);
+  --border: #262626;
+  --input: #262626;
+  --ring: #a3a3a3;
   --chart-1: oklch(0.646 0.222 41.116);
   --chart-2: oklch(0.6 0.118 184.704);
   --chart-3: oklch(0.398 0.07 227.392);
   --chart-4: oklch(0.828 0.189 84.429);
   --chart-5: oklch(0.769 0.188 70.08);
-  --sidebar: hsl(0 0% 98%);
-  --sidebar-foreground: hsl(240 5.3% 26.1%);
-  --sidebar-primary: hsl(240 5.9% 10%);
-  --sidebar-primary-foreground: hsl(0 0% 98%);
-  --sidebar-accent: hsl(240 4.8% 95.9%);
-  --sidebar-accent-foreground: hsl(240 5.9% 10%);
-  --sidebar-border: hsl(220 13% 91%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #febe5d;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #262626;
+  --sidebar-ring: #febe5d;
 }
 
 .dark {
-  --background: oklch(0.145 0 0);
-  --foreground: oklch(0.985 0 0);
-  --card: oklch(0.205 0 0);
-  --card-foreground: oklch(0.985 0 0);
-  --popover: oklch(0.205 0 0);
-  --popover-foreground: oklch(0.985 0 0);
-  --primary: oklch(0.922 0 0);
-  --primary-foreground: oklch(0.205 0 0);
-  --secondary: oklch(0.269 0 0);
-  --secondary-foreground: oklch(0.985 0 0);
-  --muted: oklch(0.269 0 0);
-  --muted-foreground: oklch(0.708 0 0);
-  --accent: oklch(0.269 0 0);
-  --accent-foreground: oklch(0.985 0 0);
+  --background: #0a0a0a;
+  --foreground: #ffffff;
+  --card: #111111;
+  --card-foreground: #ffffff;
+  --popover: #111111;
+  --popover-foreground: #ffffff;
+  --primary: #febe5d;
+  --primary-foreground: #000000;
+  --secondary: #262626;
+  --secondary-foreground: #ffffff;
+  --muted: #262626;
+  --muted-foreground: #a3a3a3;
+  --accent: #262626;
+  --accent-foreground: #ffffff;
   --destructive: oklch(0.704 0.191 22.216);
-  --border: oklch(1 0 0 / 10%);
-  --input: oklch(1 0 0 / 15%);
-  --ring: oklch(0.556 0 0);
+  --border: #262626;
+  --input: #262626;
+  --ring: #a3a3a3;
   --chart-1: oklch(0.488 0.243 264.376);
   --chart-2: oklch(0.696 0.17 162.48);
   --chart-3: oklch(0.769 0.188 70.08);
   --chart-4: oklch(0.627 0.265 303.9);
   --chart-5: oklch(0.645 0.246 16.439);
-  --sidebar: hsl(240 5.9% 10%);
-  --sidebar-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-primary: hsl(224.3 76.3% 48%);
-  --sidebar-primary-foreground: hsl(0 0% 100%);
-  --sidebar-accent: hsl(240 3.7% 15.9%);
-  --sidebar-accent-foreground: hsl(240 4.8% 95.9%);
-  --sidebar-border: hsl(240 3.7% 15.9%);
-  --sidebar-ring: hsl(217.2 91.2% 59.8%);
+  --sidebar: #0a0a0a;
+  --sidebar-foreground: #ffffff;
+  --sidebar-primary: #febe5d;
+  --sidebar-primary-foreground: #000000;
+  --sidebar-accent: #262626;
+  --sidebar-accent-foreground: #ffffff;
+  --sidebar-border: #262626;
+  --sidebar-ring: #febe5d;
 }
 
 @layer base {
