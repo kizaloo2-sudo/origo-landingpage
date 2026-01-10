@@ -39,77 +39,119 @@ export default function HowItWorks() {
           </p>
         </motion.div>
 
-        {/* What You'll Receive */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8 }}
-          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16"
-        >
+        {/* What You'll Receive - 3-Column Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 sm:gap-8 md:gap-10 relative z-10">
           {/* Score */}
-          <div className="bg-[#111111]/80 backdrop-blur-xl border-2 border-[#febe5d]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center hover:border-[#febe5d] transition-all duration-300">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <Target className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.8,
+              delay: 0,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="group relative h-full"
+          >
+            {/* Hover Glow Background */}
+            <div className="absolute inset-0 bg-[#febe5d]/0 group-hover:bg-[#febe5d]/5 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10" />
+
+            {/* Card Container */}
+            <div className="h-full bg-[#111111]/80 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 group-hover:border-[#febe5d] group-hover:shadow-[0_0_30px_rgba(254,190,93,0.2)] group-hover:-translate-y-1 sm:group-hover:-translate-y-2">
+              {/* Icon Container */}
+              <div className="mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 transition-all duration-300">
+                  <Target className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+                </div>
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 tracking-tight group-hover:text-[#febe5d] transition-colors duration-300">
+                Market Signal Readiness Score
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-[#a3a3a3] leading-relaxed">
+                A clear percentage showing where you stand
+              </p>
+
+              {/* Bottom Border Accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
-              Market Signal Readiness Score
-            </h3>
-            <p className="text-sm sm:text-base text-[#a3a3a3]">
-              A clear percentage showing where you stand
-            </p>
-          </div>
+          </motion.div>
 
           {/* Insights */}
-          <div className="bg-[#111111]/80 backdrop-blur-xl border-2 border-[#febe5d]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center hover:border-[#febe5d] transition-all duration-300">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <Zap className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.8,
+              delay: 0.2,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="group relative h-full"
+          >
+            {/* Hover Glow Background */}
+            <div className="absolute inset-0 bg-[#febe5d]/0 group-hover:bg-[#febe5d]/5 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10" />
+
+            {/* Card Container */}
+            <div className="h-full bg-[#111111]/80 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 group-hover:border-[#febe5d] group-hover:shadow-[0_0_30px_rgba(254,190,93,0.2)] group-hover:-translate-y-1 sm:group-hover:-translate-y-2">
+              {/* Icon Container */}
+              <div className="mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 transition-all duration-300">
+                  <Zap className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+                </div>
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 tracking-tight group-hover:text-[#febe5d] transition-colors duration-300">
+                Key Insights
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-[#a3a3a3] leading-relaxed">
+                What's working, what's not, and why
+              </p>
+
+              {/* Bottom Border Accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
-              Key Insights
-            </h3>
-            <p className="text-sm sm:text-base text-[#a3a3a3]">
-              What's working, what's not, and why
-            </p>
-          </div>
+          </motion.div>
 
           {/* Next Steps */}
-          <div className="bg-[#111111]/80 backdrop-blur-xl border-2 border-[#febe5d]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 text-center hover:border-[#febe5d] transition-all duration-300 sm:col-span-2 md:col-span-1">
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <Clock className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
-            </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
-              Clear Next Steps
-            </h3>
-            <p className="text-sm sm:text-base text-[#a3a3a3]">
-              Recommendations tailored to your answers
-            </p>
-          </div>
-        </motion.div>
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true, margin: "-50px" }}
+            transition={{
+              duration: 0.8,
+              delay: 0.4,
+              ease: [0.16, 1, 0.3, 1],
+            }}
+            className="group relative h-full"
+          >
+            {/* Hover Glow Background */}
+            <div className="absolute inset-0 bg-[#febe5d]/0 group-hover:bg-[#febe5d]/5 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10" />
 
-        {/* Trust Badges */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.4 }}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 sm:gap-6 md:gap-12 text-base sm:text-lg text-[#a3a3a3] pt-4 sm:pt-8 px-2"
-        >
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] flex-shrink-0" />
-            <span className="whitespace-nowrap">3 minutes</span>
-          </div>
-          <div className="hidden sm:block w-px h-5 sm:h-6 bg-white/20" />
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] flex-shrink-0" />
-            <span className="whitespace-nowrap">Free</span>
-          </div>
-          <div className="hidden sm:block w-px h-5 sm:h-6 bg-white/20" />
-          <div className="flex items-center gap-2 sm:gap-3">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] flex-shrink-0" />
-            <span className="whitespace-nowrap">Instant results</span>
-          </div>
-        </motion.div>
+            {/* Card Container */}
+            <div className="h-full bg-[#111111]/80 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 group-hover:border-[#febe5d] group-hover:shadow-[0_0_30px_rgba(254,190,93,0.2)] group-hover:-translate-y-1 sm:group-hover:-translate-y-2">
+              {/* Icon Container */}
+              <div className="mb-4 sm:mb-6">
+                <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 transition-all duration-300">
+                  <Clock className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+                </div>
+              </div>
+
+              {/* Content */}
+              <h3 className="text-xl sm:text-2xl md:text-3xl font-bold text-white mb-3 sm:mb-4 tracking-tight group-hover:text-[#febe5d] transition-colors duration-300">
+                Clear Next Steps
+              </h3>
+              <p className="text-sm sm:text-base md:text-lg text-[#a3a3a3] leading-relaxed">
+                Recommendations tailored to your answers
+              </p>
+
+              {/* Bottom Border Accent */}
+              <div className="absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+            </div>
+          </motion.div>
+        </div>
       </div>
     </SectionContainer>
   );

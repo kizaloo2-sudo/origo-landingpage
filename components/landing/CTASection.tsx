@@ -3,26 +3,9 @@
 import { motion } from "framer-motion";
 import { Button } from "@/components/ui/Button";
 import SectionContainer from "@/components/ui/SectionContainer";
-import { ArrowRight, Clock, Shield, Zap } from "lucide-react";
+import { ArrowRight } from "lucide-react";
 
 export default function CTASection() {
-  const benefits = [
-    {
-      icon: Shield,
-      title: "Free Forever",
-      description: "No credit card, no commitment"
-    },
-    {
-      icon: Clock,
-      title: "3 Minutes",
-      description: "Quick but comprehensive"
-    },
-    {
-      icon: Zap,
-      title: "Instant Clarity",
-      description: "Know where to focus — and where to stop"
-    }
-  ];
 
   return (
     <SectionContainer className="py-16 sm:py-24 md:py-32 lg:py-40 bg-[#0a0a0a] relative overflow-hidden px-4 sm:px-6">
@@ -47,45 +30,6 @@ export default function CTASection() {
           <p className="text-base sm:text-lg md:text-xl text-[#a3a3a3] mb-10 sm:mb-12 md:mb-16 px-2">
             Discover where your growth opportunities really are
           </p>
-        </motion.div>
-
-        {/* Benefits Cards - 3 Column Grid */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="grid grid-cols-1 sm:grid-cols-3 gap-4 sm:gap-6 mb-10 sm:mb-12 md:mb-16 max-w-4xl mx-auto"
-        >
-          {benefits.map((benefit, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, y: 20 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ duration: 0.6, delay: 0.3 + index * 0.1 }}
-              className="group relative"
-            >
-              {/* Card Glow */}
-              <div className="absolute inset-0 bg-[#febe5d]/0 group-hover:bg-[#febe5d]/5 rounded-xl blur-lg transition-all duration-500 -z-10" />
-              
-              {/* Card */}
-              <div className="bg-[#111111]/60 backdrop-blur-xl border-2 border-[#febe5d]/20 rounded-xl p-6 sm:p-8 h-full transition-all duration-300 group-hover:border-[#febe5d] group-hover:shadow-[0_0_20px_rgba(254,190,93,0.2)] group-hover:-translate-y-1">
-                {/* Icon */}
-                <div className="w-12 h-12 sm:w-14 sm:h-14 mx-auto mb-4 rounded-lg bg-[#febe5d]/10 border border-[#febe5d]/30 flex items-center justify-center group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/50 transition-all duration-300">
-                  <benefit.icon className="w-6 h-6 sm:w-7 sm:h-7 text-[#febe5d]" strokeWidth={2.5} />
-                </div>
-                
-                {/* Content */}
-                <h3 className="text-lg sm:text-xl font-bold text-white mb-2">
-                  {benefit.title}
-                </h3>
-                <p className="text-sm sm:text-base text-[#a3a3a3]">
-                  {benefit.description}
-                </p>
-              </div>
-            </motion.div>
-          ))}
         </motion.div>
 
         {/* CTA Button */}

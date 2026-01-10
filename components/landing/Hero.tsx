@@ -80,29 +80,6 @@ export default function Hero() {
             </span>
           </Button>
         </motion.div>
-
-        {/* Trust Signals */}
-        <motion.div
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          transition={{ duration: 0.8, delay: 0.8 }}
-          className="pt-4 sm:pt-6 md:pt-8 flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-4 md:gap-8 text-sm sm:text-base text-[#a3a3a3] px-2"
-        >
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] shadow-[0_0_8px_rgba(254,190,93,0.6)] flex-shrink-0" />
-            <span className="whitespace-nowrap">3-minute assessment</span>
-          </div>
-          <div className="hidden sm:block w-px h-4 bg-white/20" />
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] shadow-[0_0_8px_rgba(254,190,93,0.6)] flex-shrink-0" />
-            <span className="whitespace-nowrap">No credit card required</span>
-          </div>
-          <div className="hidden sm:block w-px h-4 bg-white/20" />
-          <div className="flex items-center gap-2 sm:gap-2.5">
-            <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full bg-[#febe5d] shadow-[0_0_8px_rgba(254,190,93,0.6)] flex-shrink-0" />
-            <span className="whitespace-nowrap">Instant results</span>
-          </div>
-        </motion.div>
       </div>
     </SectionContainer>
   );

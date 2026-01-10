@@ -45,20 +45,6 @@ export default function Credibility() {
           </p>
         </motion.div>
 
-        {/* Experience Statement */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.2 }}
-          className="bg-[#111111]/60 backdrop-blur-xl border-2 border-[#febe5d]/20 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12 mb-12 sm:mb-16 text-center"
-        >
-          <p className="text-base sm:text-lg md:text-xl lg:text-2xl text-white leading-relaxed mb-4 sm:mb-6">
-            With <span className="text-[#febe5d] font-bold">nearly two decades</span> of cross-market experience, 
-            Origo works with leaders to:
-          </p>
-        </motion.div>
-
         {/* 3 Key Areas */}
         <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
           <motion.div
@@ -115,27 +101,6 @@ export default function Credibility() {
             </p>
           </motion.div>
         </div>
-
-        {/* What We Don't Do */}
-        <motion.div
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, delay: 0.6 }}
-          className="bg-[#111111]/60 backdrop-blur-xl border-2 border-white/10 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 lg:p-12"
-        >
-          <div className="space-y-4 sm:space-y-6 text-center">
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
-              We don't sell tools.
-            </p>
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-white">
-              We don't sell raw data.
-            </p>
-            <p className="text-xl sm:text-2xl md:text-3xl font-bold text-[#febe5d]">
-              We work at the decision layer.
-            </p>
-          </div>
-        </motion.div>
       </div>
     </SectionContainer>
   );
