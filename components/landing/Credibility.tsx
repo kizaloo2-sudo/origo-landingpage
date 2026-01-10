@@ -3,10 +3,24 @@
 import { motion } from "framer-motion";
 import SectionContainer from "@/components/ui/SectionContainer";
 import { Building2, Users, TrendingUp } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function Credibility() {
   const [activeCard, setActiveCard] = useState<number | null>(null);
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
+
+  useEffect(() => {
+    // Detect if device supports hover (desktop)
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsHoverDevice(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsHoverDevice(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
 
   const cards = [
     {
@@ -30,7 +44,7 @@ export default function Credibility() {
     <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 bg-[#050505] relative overflow-hidden px-4 sm:px-6">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute bottom-0 left-1/4 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[#febe5d]/3 rounded-full blur-3xl" />
+        <div className="absolute bottom-0 left-1/4 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[#febe5d]/3 rounded-full blur-3xl will-change-transform" />
       </div>
 
       <div className="max-w-5xl mx-auto relative z-10">
@@ -72,6 +86,13 @@ export default function Credibility() {
             const Icon = card.icon;
             const isActive = activeCard === index;
             
+            const handleInteraction = () => {
+              // Only toggle on click for touch devices
+              if (!isHoverDevice) {
+                setActiveCard(isActive ? null : index);
+              }
+            };
+            
             return (
               <motion.div
                 key={index}
@@ -79,12 +100,16 @@ export default function Credibility() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ duration: 0.8, delay: 0.3 + index * 0.1 }}
-                className={`text-center cursor-pointer ${
+                className={`text-center ${
+                  !isHoverDevice ? 'cursor-pointer' : ''
+                } ${
                   index === 0 ? 'sm:col-span-2 md:col-span-1' : ''
                 } ${index === 2 ? 'sm:col-span-2 md:col-span-1' : ''}`}
-                onClick={() => setActiveCard(isActive ? null : index)}
-                onMouseEnter={() => setActiveCard(index)}
-                onMouseLeave={() => setActiveCard(null)}
+                onClick={handleInteraction}
+                {...(isHoverDevice && {
+                  onMouseEnter: () => setActiveCard(index),
+                  onMouseLeave: () => setActiveCard(null),
+                })}
               >
                 <div className={`w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 ${
                   isActive 

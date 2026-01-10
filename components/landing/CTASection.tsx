@@ -11,7 +11,7 @@ export default function CTASection() {
     <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 bg-[#0a0a0a] relative overflow-hidden px-4 sm:px-6">
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[#febe5d]/10 rounded-full blur-3xl" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[#febe5d]/10 rounded-full blur-3xl will-change-transform" />
       </div>
 
       <div className="max-w-5xl mx-auto text-center relative z-10">
@@ -46,7 +46,7 @@ export default function CTASection() {
             onClick={() => (window.location.href = "/assessment")}
             className="group rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 font-bold bg-[#febe5d] hover:bg-[#ffc978] active:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_60px_rgba(254,190,93,0.8)] active:shadow-[0_0_60px_rgba(254,190,93,0.8)] transition-all duration-300 w-auto inline-flex"
           >
-            <span className="flex items-center justify-center gap-2 sm:gap-3">
+            <span className="flex items-center justify-center gap-2 sm:gap-3 whitespace-nowrap">
               <span>Start the Assessment</span>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0 group-hover:translate-x-1 transition-transform duration-300" />
             </span>

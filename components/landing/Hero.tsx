@@ -11,10 +11,10 @@ export default function Hero() {
       {/* Background Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Center Glow */}
-        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[#febe5d]/8 rounded-full blur-3xl" />
+        <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[#febe5d]/8 rounded-full blur-3xl will-change-transform" />
         
         {/* Top Right Accent */}
-        <div className="absolute top-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-[#febe5d]/5 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-0 w-[400px] sm:w-[600px] h-[400px] sm:h-[600px] bg-[#febe5d]/5 rounded-full blur-3xl will-change-transform" />
       </div>
 
       {/* Content - Centered */}
@@ -24,11 +24,11 @@ export default function Hero() {
           initial={{ opacity: 0, scale: 0.9 }}
           animate={{ opacity: 1, scale: 1 }}
           transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
-          className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-[#febe5d]/10 border-2 border-[#febe5d]/30 rounded-full shadow-[0_0_20px_rgba(254,190,93,0.2)]"
+          className="inline-flex items-center gap-2 px-4 py-2 sm:px-5 sm:py-2.5 bg-[#febe5d]/10 border-2 border-[#febe5d]/30 rounded-full shadow-[0_0_20px_rgba(254,190,93,0.2)] max-w-[95vw]"
         >
           <Sparkles className="w-3.5 h-3.5 sm:w-4 sm:h-4 text-[#febe5d] flex-shrink-0" />
-          <span className="text-xs sm:text-sm font-semibold text-[#febe5d] uppercase tracking-wide whitespace-nowrap">
-            Market Signal Readiness Assessment
+          <span className="text-xs sm:text-sm font-semibold text-[#febe5d] uppercase tracking-wide text-center leading-tight">
+            <span className="hidden xs:inline">Market Signal </span>Readiness Assessment
           </span>
         </motion.div>
 
@@ -74,7 +74,7 @@ export default function Hero() {
             onClick={() => (window.location.href = "/assessment")}
             className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 font-bold bg-[#febe5d] hover:bg-[#ffc978] active:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_50px_rgba(254,190,93,0.7)] active:shadow-[0_0_50px_rgba(254,190,93,0.7)] transition-all duration-300 w-auto inline-flex"
           >
-            <span className="flex items-center justify-center gap-2 sm:gap-3">
+            <span className="flex items-center justify-center gap-2 sm:gap-3 whitespace-nowrap">
               <span>Start Assessment</span>
               <ArrowRight className="w-5 h-5 sm:w-6 sm:h-6 flex-shrink-0" />
             </span>

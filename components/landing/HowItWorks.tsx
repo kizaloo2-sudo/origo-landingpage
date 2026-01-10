@@ -3,7 +3,7 @@
 import { motion } from "framer-motion";
 import SectionContainer from "@/components/ui/SectionContainer";
 import { Target, Zap, Clock, LucideIcon } from "lucide-react";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 interface ValuePropCardProps {
   icon: LucideIcon;
@@ -14,6 +14,27 @@ interface ValuePropCardProps {
 
 function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardProps) {
   const [isActive, setIsActive] = useState(false);
+  const [isHoverDevice, setIsHoverDevice] = useState(false);
+
+  useEffect(() => {
+    // Detect if device supports hover (desktop)
+    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
+    setIsHoverDevice(mediaQuery.matches);
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setIsHoverDevice(e.matches);
+    };
+
+    mediaQuery.addEventListener('change', handleChange);
+    return () => mediaQuery.removeEventListener('change', handleChange);
+  }, []);
+
+  const handleInteraction = () => {
+    // Only toggle on click for touch devices
+    if (!isHoverDevice) {
+      setIsActive(!isActive);
+    }
+  };
 
   return (
     <motion.div
@@ -26,17 +47,21 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
         ease: [0.16, 1, 0.3, 1],
       }}
       className="group relative h-full"
-      onClick={() => setIsActive(!isActive)}
-      onMouseEnter={() => setIsActive(true)}
-      onMouseLeave={() => setIsActive(false)}
+      onClick={handleInteraction}
+      {...(isHoverDevice && {
+        onMouseEnter: () => setIsActive(true),
+        onMouseLeave: () => setIsActive(false),
+      })}
     >
       {/* Hover Glow Background */}
-      <div className={`absolute inset-0 rounded-xl sm:rounded-2xl blur-xl transition-all duration-500 -z-10 ${
+      <div className={`absolute inset-0 rounded-xl sm:rounded-2xl blur-2xl sm:blur-3xl transition-all duration-500 -z-10 will-change-transform ${
         isActive ? 'bg-[#febe5d]/5' : 'bg-[#febe5d]/0'
       }`} />
 
       {/* Card Container */}
-      <div className={`h-full bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 cursor-pointer ${
+      <div className={`h-full bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-6 sm:p-8 md:p-10 transition-all duration-300 ${
+        !isHoverDevice ? 'cursor-pointer' : ''
+      } ${
         isActive 
           ? 'border-[#febe5d] shadow-[0_0_30px_rgba(254,190,93,0.2)] -translate-y-1 sm:-translate-y-2' 
           : 'border-white/10'
@@ -99,7 +124,7 @@ export default function HowItWorks() {
     <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 bg-[#0a0a0a] relative px-4 sm:px-6">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-[#febe5d]/3 rounded-full blur-3xl" />
+        <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-[#febe5d]/3 rounded-full blur-3xl will-change-transform" />
       </div>
 
       {/* Section Header */}
