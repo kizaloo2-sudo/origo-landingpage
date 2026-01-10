@@ -63,44 +63,48 @@ export default function AnalyticsPage() {
         <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Growth Rate</CardTitle>
-            <TrendingUp className="w-4 h-4 text-green-400" />
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <TrendingUp className="w-4 h-4 text-[#febe5d]" />
+            </div>
           </CardHeader>
           <CardContent>
-            <div className="text-2xl font-bold text-white">+23.5%</div>
-            <p className="text-xs text-green-400 mt-1">↑ 12.3% from last month</p>
+            <div className="text-2xl font-bold text-white">23.5%</div>
           </CardContent>
         </Card>
 
         <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Engagement</CardTitle>
-            <Activity className="w-4 h-4 text-blue-400" />
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <Activity className="w-4 h-4 text-[#febe5d]" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">87.3%</div>
-            <p className="text-xs text-blue-400 mt-1">↑ 5.2% from last month</p>
           </CardContent>
         </Card>
 
         <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Conversion</CardTitle>
-            <Target className="w-4 h-4 text-[#febe5d]" />
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <Target className="w-4 h-4 text-[#febe5d]" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">64.2%</div>
-            <p className="text-xs text-[#febe5d] mt-1">↑ 8.1% from last month</p>
           </CardContent>
         </Card>
 
         <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Retention</CardTitle>
-            <Users className="w-4 h-4 text-purple-400" />
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <Users className="w-4 h-4 text-[#febe5d]" />
+            </div>
           </CardHeader>
           <CardContent>
             <div className="text-2xl font-bold text-white">91.8%</div>
-            <p className="text-xs text-purple-400 mt-1">↑ 3.4% from last month</p>
           </CardContent>
         </Card>
       </div>

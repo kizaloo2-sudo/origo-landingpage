@@ -1,7 +1,7 @@
 'use client';
 
 import { useEffect, useState } from 'react';
-import { Card, CardContent } from '@/components/ui/card';
+import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
 import { Button } from '@/components/ui/Button';
@@ -14,7 +14,7 @@ import {
   TableRow,
 } from '@/components/ui/table';
 import { Badge } from '@/components/ui/badge';
-import { Search, Eye, MoreVertical, Briefcase, Building, Trash2, Send, Award, Mail } from 'lucide-react';
+import { Search, Eye, MoreVertical, Briefcase, Building, Trash2, Send, Award, Mail, Download, TrendingUp, Activity, AlertCircle } from 'lucide-react';
 import {
   DropdownMenu,
   DropdownMenuContent,
@@ -108,6 +108,42 @@ export default function AssessmentsPage() {
     }
   };
 
+  const handleExportCSV = () => {
+    try {
+      // Create CSV content
+      const headers = ['Name', 'Email', 'Role', 'Industry', 'Score', 'Tier', 'Date'];
+      const rows = filteredAssessments.map(assessment => [
+        assessment.profiles?.full_name || 'Unknown User',
+        assessment.profiles?.email || 'N/A',
+        assessment.profiles?.role || 'N/A',
+        assessment.profiles?.industry || 'N/A',
+        assessment.score || 0,
+        getTierFromScore(assessment.score || 0),
+        new Date(assessment.created_at).toLocaleDateString()
+      ]);
+
+      const csvContent = [
+        headers.join(','),
+        ...rows.map(row => row.map(cell => `"${cell}"`).join(','))
+      ].join('\n');
+
+      // Create blob and download
+      const blob = new Blob([csvContent], { type: 'text/csv;charset=utf-8;' });
+      const link = document.createElement('a');
+      const url = URL.createObjectURL(blob);
+      link.setAttribute('href', url);
+      link.setAttribute('download', `assessments_${new Date().toISOString().split('T')[0]}.csv`);
+      link.style.visibility = 'hidden';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+
+      toast.success('CSV exported successfully');
+    } catch (error) {
+      toast.error('Failed to export CSV');
+    }
+  };
+
   const filteredAssessments = assessments.filter(
     (assessment) =>
       assessment.profiles?.email?.toLowerCase().includes(searchQuery.toLowerCase()) ||
@@ -140,6 +176,16 @@ export default function AssessmentsPage() {
     }
   };
 
+  // Calculate tier statistics
+  const totalAssessments = assessments.length;
+  const signalDriven = assessments.filter(a => getTierFromScore(a.score || 0) === 'Signal-Driven').length;
+  const partialSignal = assessments.filter(a => getTierFromScore(a.score || 0) === 'Partial Signal').length;
+  const noiseDriven = assessments.filter(a => getTierFromScore(a.score || 0) === 'Noise-Driven').length;
+
+  const signalDrivenPercent = totalAssessments > 0 ? ((signalDriven / totalAssessments) * 100).toFixed(1) : '0.0';
+  const partialSignalPercent = totalAssessments > 0 ? ((partialSignal / totalAssessments) * 100).toFixed(1) : '0.0';
+  const noiseDrivenPercent = totalAssessments > 0 ? ((noiseDriven / totalAssessments) * 100).toFixed(1) : '0.0';
+
   if (loading) {
     return (
       <div className="flex items-center justify-center min-h-[400px]">
@@ -153,7 +199,67 @@ export default function AssessmentsPage() {
 
   return (
     <div className="space-y-6">
-      {/* Search */}
+      {/* Tier Distribution Cards */}
+      <div className="grid gap-4 md:grid-cols-3">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-neutral-400">
+              Signal-Driven
+            </CardTitle>
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <TrendingUp className="w-4 h-4 text-[#febe5d]" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-white mb-1">
+              {signalDrivenPercent}%
+            </div>
+            <p className="text-xs text-neutral-400">
+              {signalDriven} of {totalAssessments} assessments
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-neutral-400">
+              Partial Signal
+            </CardTitle>
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <Activity className="w-4 h-4 text-[#febe5d]" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-white mb-1">
+              {partialSignalPercent}%
+            </div>
+            <p className="text-xs text-neutral-400">
+              {partialSignal} of {totalAssessments} assessments
+            </p>
+          </CardContent>
+        </Card>
+
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+          <CardHeader className="flex flex-row items-center justify-between pb-2">
+            <CardTitle className="text-sm font-medium text-neutral-400">
+              Noise-Driven
+            </CardTitle>
+            <div className="p-2 rounded-lg bg-[#febe5d]/10">
+              <AlertCircle className="w-4 h-4 text-[#febe5d]" />
+            </div>
+          </CardHeader>
+          <CardContent>
+            <div className="text-2xl font-bold text-white mb-1">
+              {noiseDrivenPercent}%
+            </div>
+            <p className="text-xs text-neutral-400">
+              {noiseDriven} of {totalAssessments} assessments
+            </p>
+          </CardContent>
+        </Card>
+      </div>
+
+      {/* Search and Export */}
       <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
         <CardContent className="pt-6">
           <div className="flex items-center gap-4">
@@ -166,6 +272,13 @@ export default function AssessmentsPage() {
                 className="pl-10 bg-black/40 border-white/10 text-white"
               />
             </div>
+            <Button
+              onClick={handleExportCSV}
+              className="bg-[#febe5d] hover:bg-[#ffc978] text-black font-bold"
+            >
+              <Download className="mr-2 w-4 h-4" />
+              Export to CSV
+            </Button>
           </div>
         </CardContent>
       </Card>

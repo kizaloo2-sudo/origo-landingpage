@@ -5,7 +5,6 @@ import { usePathname } from 'next/navigation';
 import { cn } from '@/lib/utils';
 import {
   LayoutDashboard,
-  Users,
   FileText,
   BarChart3,
   Settings,
@@ -26,11 +25,6 @@ const navigation = [
     name: 'Dashboard',
     href: '/admin/dashboard',
     icon: LayoutDashboard,
-  },
-  {
-    name: 'Users',
-    href: '/admin/dashboard/users',
-    icon: Users,
   },
   {
     name: 'Assessments',

@@ -1,7 +1,7 @@
 'use client';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Users, FileText, TrendingUp, CheckCircle } from 'lucide-react';
+import { Users, FileText, TrendingUp } from 'lucide-react';
 
 interface StatsCardsProps {
   stats: {
@@ -15,41 +15,27 @@ interface StatsCardsProps {
 export function StatsCards({ stats }: StatsCardsProps) {
   const cards = [
     {
-      title: 'Total Users',
-      value: stats.totalUsers.toLocaleString(),
-      change: '+12.5%',
-      icon: Users,
-      color: 'text-blue-400',
-      bgColor: 'bg-blue-500/10',
-    },
-    {
       title: 'Total Assessments',
       value: stats.totalAssessments.toLocaleString(),
-      change: '+8.2%',
+      description: 'Completed assessments',
       icon: FileText,
-      color: 'text-green-400',
-      bgColor: 'bg-green-500/10',
     },
     {
-      title: 'Active Users',
-      value: stats.activeUsers.toLocaleString(),
-      change: '+5.3%',
-      icon: TrendingUp,
-      color: 'text-purple-400',
-      bgColor: 'bg-purple-500/10',
+      title: 'Total Users',
+      value: stats.totalUsers.toLocaleString(),
+      description: 'Registered users',
+      icon: Users,
     },
     {
       title: 'Completion Rate',
       value: `${stats.completionRate}%`,
-      change: '+2.1%',
-      icon: CheckCircle,
-      color: 'text-[#febe5d]',
-      bgColor: 'bg-[#febe5d]/10',
+      description: 'Average completion rate',
+      icon: TrendingUp,
     },
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-4 md:grid-cols-3">
       {cards.map((card, index) => {
         const Icon = card.icon;
         return (
@@ -61,16 +47,16 @@ export function StatsCards({ stats }: StatsCardsProps) {
               <CardTitle className="text-sm font-medium text-neutral-400">
                 {card.title}
               </CardTitle>
-              <div className={`p-2 rounded-lg ${card.bgColor}`}>
-                <Icon className={`w-4 h-4 ${card.color}`} />
+              <div className="p-2 rounded-lg bg-[#febe5d]/10">
+                <Icon className="w-4 h-4 text-[#febe5d]" />
               </div>
             </CardHeader>
             <CardContent>
               <div className="text-2xl font-bold text-white mb-1">
                 {card.value}
               </div>
-              <p className="text-xs text-green-400">
-                {card.change} from last month
+              <p className="text-xs text-neutral-400">
+                {card.description}
               </p>
             </CardContent>
           </Card>
