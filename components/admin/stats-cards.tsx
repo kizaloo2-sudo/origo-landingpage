@@ -41,7 +41,7 @@ export function StatsCards({ stats }: StatsCardsProps) {
         return (
           <Card
             key={index}
-            className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all"
+            className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors"
           >
             <CardHeader className="flex flex-row items-center justify-between pb-2">
               <CardTitle className="text-sm font-medium text-neutral-400">

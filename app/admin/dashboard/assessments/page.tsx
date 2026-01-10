@@ -201,7 +201,7 @@ export default function AssessmentsPage() {
     <div className="space-y-6">
       {/* Tier Distribution Cards */}
       <div className="grid gap-4 md:grid-cols-3">
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Signal-Driven
@@ -220,7 +220,7 @@ export default function AssessmentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Partial Signal
@@ -239,7 +239,7 @@ export default function AssessmentsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 hover:border-white/20 transition-all">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">
               Noise-Driven
@@ -262,7 +262,7 @@ export default function AssessmentsPage() {
       {/* Search and Export */}
       <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
         <CardContent className="pt-6">
-          <div className="flex items-center gap-4">
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center gap-4">
             <div className="relative flex-1">
               <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-neutral-500" />
               <Input
@@ -274,7 +274,7 @@ export default function AssessmentsPage() {
             </div>
             <Button
               onClick={handleExportCSV}
-              className="bg-[#febe5d] hover:bg-[#ffc978] text-black font-bold"
+              className="bg-[#febe5d] hover:bg-[#ffc978] text-black font-bold active:scale-95 transition-transform touch-none"
             >
               <Download className="mr-2 w-4 h-4" />
               Export to CSV
@@ -285,10 +285,10 @@ export default function AssessmentsPage() {
 
       {/* Assessments Table */}
       <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
-        <CardContent className="pt-6">
+        <CardContent className="pt-6 overflow-x-auto">
           <Table>
             <TableHeader>
-              <TableRow className="border-white/10 hover:bg-white/5">
+              <TableRow className="border-white/10">
                 <TableHead className="text-neutral-400">User</TableHead>
                 <TableHead className="text-neutral-400">Email</TableHead>
                 <TableHead className="text-neutral-400">Role</TableHead>
@@ -308,7 +308,7 @@ export default function AssessmentsPage() {
                 filteredAssessments.map((assessment) => (
                   <TableRow
                     key={assessment.id}
-                    className="border-white/10 hover:bg-white/5 transition-colors"
+                    className="border-white/10 transition-colors"
                   >
                     <TableCell>
                       <p className="text-sm font-medium text-white">
@@ -344,7 +344,7 @@ export default function AssessmentsPage() {
                     <TableCell>
                       <DropdownMenu>
                         <DropdownMenuTrigger asChild>
-                          <Button variant="ghost" size="icon" className="h-8 w-8 hover:bg-white/10 transition-all">
+                          <Button variant="ghost" size="icon" className="h-8 w-8 active:scale-95 transition-transform touch-none">
                             <MoreVertical className="w-4 h-4 text-neutral-400" />
                           </Button>
                         </DropdownMenuTrigger>
@@ -352,7 +352,7 @@ export default function AssessmentsPage() {
                           <DropdownMenuLabel className="text-white">Actions</DropdownMenuLabel>
                           <DropdownMenuSeparator className="bg-white/10" />
                           <DropdownMenuItem 
-                            className="text-neutral-300 focus:text-white focus:bg-white/5"
+                            className="text-neutral-300 focus:text-white focus:bg-white/5 active:bg-white/10"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setViewDetailsOpen(true);
@@ -362,7 +362,7 @@ export default function AssessmentsPage() {
                             View Details
                           </DropdownMenuItem>
                           <DropdownMenuItem 
-                            className="text-neutral-300 focus:text-white focus:bg-white/5"
+                            className="text-neutral-300 focus:text-white focus:bg-white/5 active:bg-white/10"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setSendEmailOpen(true);
@@ -373,7 +373,7 @@ export default function AssessmentsPage() {
                           </DropdownMenuItem>
                           <DropdownMenuSeparator className="bg-white/10" />
                           <DropdownMenuItem 
-                            className="text-red-400 focus:text-red-300 focus:bg-red-500/10"
+                            className="text-red-400 focus:text-red-300 focus:bg-red-500/10 active:bg-red-500/20"
                             onClick={() => {
                               setSelectedAssessment(assessment);
                               setDeleteAssessmentOpen(true);
@@ -507,7 +507,7 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline"
               onClick={() => setViewDetailsOpen(false)}
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 transition-all"
+              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
             >
               Close
             </Button>
@@ -551,13 +551,13 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline" 
               onClick={() => setSendEmailOpen(false)} 
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 transition-all"
+              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleSendEmail}
-              className="bg-[#febe5d] hover:bg-[#ffc978] text-black"
+              className="bg-[#febe5d] hover:bg-[#ffc978] text-black active:scale-95 transition-all touch-none"
               disabled={!emailForm.subject || !emailForm.message}
             >
               <Send className="mr-2 w-4 h-4" />
@@ -586,13 +586,13 @@ export default function AssessmentsPage() {
             <Button 
               variant="outline" 
               onClick={() => setDeleteAssessmentOpen(false)} 
-              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 transition-all"
+              className="border-white/10 text-neutral-300 hover:text-white bg-white/5 hover:bg-white/10 h-10 px-4 active:scale-95 transition-all touch-none"
             >
               Cancel
             </Button>
             <Button 
               onClick={handleDeleteAssessment}
-              className="bg-red-500 hover:bg-red-600 text-white"
+              className="bg-red-500 hover:bg-red-600 text-white active:scale-95 transition-all touch-none"
             >
               <Trash2 className="mr-2 w-4 h-4" />
               Delete Assessment

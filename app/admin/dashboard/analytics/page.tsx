@@ -60,7 +60,7 @@ export default function AnalyticsPage() {
     <div className="space-y-6">
       {/* Key Metrics */}
       <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Growth Rate</CardTitle>
             <div className="p-2 rounded-lg bg-[#febe5d]/10">
@@ -72,7 +72,7 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Engagement</CardTitle>
             <div className="p-2 rounded-lg bg-[#febe5d]/10">
@@ -84,7 +84,7 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Conversion</CardTitle>
             <div className="p-2 rounded-lg bg-[#febe5d]/10">
@@ -96,7 +96,7 @@ export default function AnalyticsPage() {
           </CardContent>
         </Card>
 
-        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10">
+        <Card className="bg-[#111111]/80 backdrop-blur-xl border-white/10 transition-colors">
           <CardHeader className="flex flex-row items-center justify-between pb-2">
             <CardTitle className="text-sm font-medium text-neutral-400">Retention</CardTitle>
             <div className="p-2 rounded-lg bg-[#febe5d]/10">
@@ -114,21 +114,21 @@ export default function AnalyticsPage() {
         <TabsList className="bg-[#111111]/80 border border-white/10">
           <TabsTrigger
             value="growth"
-            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black"
+            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black transition-colors"
           >
             <TrendingUp className="w-4 h-4 mr-2" />
             User Growth
           </TabsTrigger>
           <TabsTrigger
             value="distribution"
-            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black"
+            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black transition-colors"
           >
             <PieChart className="w-4 h-4 mr-2" />
             Score Distribution
           </TabsTrigger>
           <TabsTrigger
             value="completion"
-            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black"
+            className="data-[state=active]:bg-[#febe5d] data-[state=active]:text-black transition-colors"
           >
             <BarChart3 className="w-4 h-4 mr-2" />
             Completion Rate
