@@ -7,7 +7,7 @@ import { ArrowRight, Sparkles } from "lucide-react";
 
 export default function Hero() {
   return (
-    <SectionContainer className="min-h-screen flex items-center justify-center py-16 px-4 sm:py-20 md:py-16 relative overflow-hidden">
+    <SectionContainer className="min-h-screen flex items-center justify-center py-12 px-4 sm:py-16 md:py-20 relative overflow-hidden">
       {/* Background Glow Effects */}
       <div className="absolute inset-0 pointer-events-none">
         {/* Center Glow */}
@@ -61,7 +61,7 @@ export default function Hero() {
           </span>
         </motion.p>
 
-        {/* Primary CTA Button - CENTERED */}
+        {/* Primary CTA Button - CENTERED with max-width */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
@@ -72,7 +72,7 @@ export default function Hero() {
             variant="default"
             size="lg"
             onClick={() => (window.location.href = "/assessment")}
-            className="rounded-full text-base sm:text-lg md:text-xl px-6 sm:px-8 md:px-10 py-5 sm:py-6 md:py-7 font-bold bg-[#febe5d] hover:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_50px_rgba(254,190,93,0.7)] transition-all duration-300 w-full sm:w-auto max-w-md"
+            className="rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-5 sm:py-6 md:py-7 font-bold bg-[#febe5d] hover:bg-[#ffc978] active:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_50px_rgba(254,190,93,0.7)] active:shadow-[0_0_50px_rgba(254,190,93,0.7)] transition-all duration-300 w-auto inline-flex"
           >
             <span className="flex items-center justify-center gap-2 sm:gap-3">
               <span>Start Assessment</span>

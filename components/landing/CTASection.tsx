@@ -8,7 +8,7 @@ import { ArrowRight } from "lucide-react";
 export default function CTASection() {
 
   return (
-    <SectionContainer className="py-16 sm:py-24 md:py-32 lg:py-40 bg-[#0a0a0a] relative overflow-hidden px-4 sm:px-6">
+    <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 bg-[#0a0a0a] relative overflow-hidden px-4 sm:px-6">
       {/* Background Glow */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] sm:w-[800px] h-[600px] sm:h-[800px] bg-[#febe5d]/10 rounded-full blur-3xl" />
@@ -38,13 +38,13 @@ export default function CTASection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6, delay: 0.6 }}
-          className="mb-12 sm:mb-16 md:mb-20"
+          className="mb-12 sm:mb-16 md:mb-20 flex justify-center"
         >
           <Button
             variant="default"
             size="lg"
             onClick={() => (window.location.href = "/assessment")}
-            className="group rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 font-bold bg-[#febe5d] hover:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_60px_rgba(254,190,93,0.8)] transition-all duration-300 w-full sm:w-auto max-w-md"
+            className="group rounded-full text-base sm:text-lg md:text-xl px-8 sm:px-10 md:px-12 py-6 sm:py-7 md:py-8 font-bold bg-[#febe5d] hover:bg-[#ffc978] active:bg-[#ffc978] text-black shadow-[0_0_30px_rgba(254,190,93,0.5)] hover:shadow-[0_0_60px_rgba(254,190,93,0.8)] active:shadow-[0_0_60px_rgba(254,190,93,0.8)] transition-all duration-300 w-auto inline-flex"
           >
             <span className="flex items-center justify-center gap-2 sm:gap-3">
               <span>Start the Assessment</span>

@@ -6,7 +6,7 @@ import { Building2, Users, TrendingUp } from "lucide-react";
 
 export default function Credibility() {
   return (
-    <SectionContainer className="py-16 sm:py-24 md:py-32 lg:py-40 bg-[#050505] relative overflow-hidden px-4 sm:px-6">
+    <SectionContainer className="py-12 sm:py-16 md:py-24 lg:py-32 xl:py-40 bg-[#050505] relative overflow-hidden px-4 sm:px-6">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute bottom-0 left-1/4 w-[400px] sm:w-[500px] h-[400px] sm:h-[500px] bg-[#febe5d]/3 rounded-full blur-3xl" />
@@ -19,7 +19,7 @@ export default function Credibility() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
-          className="text-center mb-12 sm:mb-16 md:mb-20 lg:mb-24"
+          className="text-center mb-10 sm:mb-12 md:mb-16 lg:mb-20 xl:mb-24"
         >
           <motion.div
             initial={{ opacity: 0, scale: 0.9 }}
@@ -46,18 +46,18 @@ export default function Credibility() {
         </motion.div>
 
         {/* 3 Key Areas */}
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-12 sm:mb-16">
+        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 mb-10 sm:mb-12 md:mb-16">
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.3 }}
-            className="text-center sm:col-span-2 md:col-span-1"
+            className="group text-center sm:col-span-2 md:col-span-1 cursor-pointer"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <Users className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 group-hover:scale-110 group-active:scale-105">
+              <Users className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 group-hover:rotate-12 group-active:rotate-6" strokeWidth={2} />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#febe5d]">
               Interpret Real Buyer Activity
             </h3>
             <p className="text-sm sm:text-base text-[#a3a3a3]">
@@ -70,12 +70,12 @@ export default function Credibility() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.4 }}
-            className="text-center"
+            className="group text-center cursor-pointer"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 group-hover:scale-110 group-active:scale-105">
+              <TrendingUp className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 group-hover:rotate-12 group-active:rotate-6" strokeWidth={2} />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#febe5d]">
               Validate Market Demand
             </h3>
             <p className="text-sm sm:text-base text-[#a3a3a3]">
@@ -88,12 +88,12 @@ export default function Credibility() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.8, delay: 0.5 }}
-            className="text-center sm:col-span-2 md:col-span-1"
+            className="group text-center sm:col-span-2 md:col-span-1 cursor-pointer"
           >
-            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center">
-              <Building2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d]" strokeWidth={2} />
+            <div className="w-12 h-12 sm:w-14 sm:h-14 md:w-16 md:h-16 mx-auto mb-3 sm:mb-4 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 group-hover:bg-[#febe5d]/20 group-hover:border-[#febe5d]/40 group-hover:scale-110 group-active:scale-105">
+              <Building2 className="w-6 h-6 sm:w-7 sm:h-7 md:w-8 md:h-8 text-[#febe5d] transition-transform duration-300 group-hover:rotate-12 group-active:rotate-6" strokeWidth={2} />
             </div>
-            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3">
+            <h3 className="text-lg sm:text-xl font-bold text-white mb-2 sm:mb-3 transition-colors duration-300 group-hover:text-[#febe5d]">
               Design Decision Frameworks
             </h3>
             <p className="text-sm sm:text-base text-[#a3a3a3]">
