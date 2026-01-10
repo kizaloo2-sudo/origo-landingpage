@@ -3,7 +3,6 @@
 import { motion } from "framer-motion";
 import SectionContainer from "@/components/ui/SectionContainer";
 import { Target, Cpu, TrendingUp, LucideIcon } from "lucide-react";
-import { useState, useEffect } from "react";
 
 interface ValuePropCardProps {
   icon: LucideIcon;
@@ -13,29 +12,6 @@ interface ValuePropCardProps {
 }
 
 function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardProps) {
-  const [isActive, setIsActive] = useState(false);
-  const [isHoverDevice, setIsHoverDevice] = useState(false);
-
-  useEffect(() => {
-    // Detect if device supports hover (desktop)
-    const mediaQuery = window.matchMedia('(hover: hover) and (pointer: fine)');
-    setIsHoverDevice(mediaQuery.matches);
-
-    const handleChange = (e: MediaQueryListEvent) => {
-      setIsHoverDevice(e.matches);
-    };
-
-    mediaQuery.addEventListener('change', handleChange);
-    return () => mediaQuery.removeEventListener('change', handleChange);
-  }, []);
-
-  const handleInteraction = () => {
-    // Only toggle on click for touch devices
-    if (!isHoverDevice) {
-      setIsActive(!isActive);
-    }
-  };
-
   return (
     <motion.div
       initial={{ opacity: 0, y: 30 }}
@@ -47,52 +23,30 @@ function ValuePropCard({ icon: Icon, title, description, index }: ValuePropCardP
         ease: [0.16, 1, 0.3, 1],
       }}
       className="group relative h-full"
-      onClick={handleInteraction}
-      {...(isHoverDevice && {
-        onMouseEnter: () => setIsActive(true),
-        onMouseLeave: () => setIsActive(false),
-      })}
     >
-      {/* Hover Glow Background */}
-      <div className={`absolute inset-0 rounded-xl sm:rounded-2xl blur-2xl sm:blur-3xl transition-all duration-500 -z-10 will-change-transform ${
-        isActive ? 'bg-[#febe5d]/5' : 'bg-[#febe5d]/0'
-      }`} />
+      {/* Hover Glow Background - Desktop Only */}
+      <div className="hidden md:block absolute inset-0 rounded-2xl blur-3xl transition-all duration-500 -z-10 group-hover:bg-[#febe5d]/5" />
 
       {/* Card Container */}
-      <div className={`h-full min-h-[320px] sm:min-h-[340px] bg-[#111111]/80 backdrop-blur-xl border-2 rounded-xl sm:rounded-2xl p-8 sm:p-10 md:p-12 transition-all duration-300 overflow-hidden ${
-        !isHoverDevice ? 'cursor-pointer' : ''
-      } ${
-        isActive 
-          ? 'border-[#febe5d] shadow-[0_0_30px_rgba(254,190,93,0.2)] -translate-y-1 sm:-translate-y-2' 
-          : 'border-white/10'
-      }`}>
+      <div className="h-full min-h-[320px] sm:min-h-[340px] bg-[#111111] border-2 border-white/10 rounded-xl sm:rounded-2xl p-8 sm:p-10 md:p-12 transition-all duration-300 overflow-hidden md:hover:border-[#febe5d] md:hover:shadow-[0_0_30px_rgba(254,190,93,0.2)] md:hover:-translate-y-2">
+        
         {/* Icon Container */}
         <div className="mb-5 sm:mb-6">
-          <div className={`w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 ${
-            isActive 
-              ? 'bg-[#febe5d]/20 border-[#febe5d]/40 scale-110' 
-              : ''
-          }`}>
-            <Icon className={`w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#febe5d] transition-transform duration-300 ${
-              isActive ? 'rotate-12' : ''
-            }`} strokeWidth={2} />
+          <div className="w-14 h-14 sm:w-16 sm:h-16 md:w-18 md:h-18 rounded-lg sm:rounded-xl bg-[#febe5d]/10 border border-[#febe5d]/20 flex items-center justify-center transition-all duration-300 md:group-hover:bg-[#febe5d]/20 md:group-hover:border-[#febe5d]/40 md:group-hover:scale-110">
+            <Icon className="w-7 h-7 sm:w-8 sm:h-8 md:w-9 md:h-9 text-[#febe5d] transition-transform duration-300 md:group-hover:rotate-12" strokeWidth={2} />
           </div>
         </div>
 
         {/* Content */}
-        <h3 className={`text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-5 tracking-tight leading-tight transition-colors duration-300 ${
-          isActive ? 'text-[#febe5d]' : 'text-white'
-        }`}>
+        <h3 className="text-2xl sm:text-3xl md:text-4xl font-bold mb-4 sm:mb-5 tracking-tight leading-tight text-white transition-colors duration-300 md:group-hover:text-[#febe5d]">
           {title}
         </h3>
         <p className="text-base sm:text-lg md:text-xl text-[#a3a3a3] leading-relaxed">
           {description}
         </p>
 
-        {/* Bottom Border Accent */}
-        <div className={`absolute bottom-0 left-0 right-0 h-1 bg-linear-to-r from-transparent via-[#febe5d] to-transparent transition-opacity duration-500 ${
-          isActive ? 'opacity-100' : 'opacity-0'
-        }`} />
+        {/* Bottom Border Accent - Desktop Only */}
+        <div className="hidden md:block absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-transparent via-[#febe5d] to-transparent opacity-0 transition-opacity duration-500 group-hover:opacity-100" />
       </div>
     </motion.div>
   );
@@ -124,7 +78,7 @@ export default function ValueProps() {
     <SectionContainer className="py-16 sm:py-20 md:py-24 lg:py-32 xl:py-40 relative px-6 sm:px-8">
       {/* Background Decoration */}
       <div className="absolute inset-0 pointer-events-none overflow-hidden">
-        <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-[#febe5d]/3 rounded-full blur-3xl will-change-transform" />
+        <div className="absolute top-0 right-1/4 w-[300px] sm:w-[400px] h-[300px] sm:h-[400px] bg-[#febe5d]/3 rounded-full blur-3xl" />
       </div>
 
       {/* Section Header */}
